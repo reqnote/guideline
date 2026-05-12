@@ -1,0 +1,44 @@
+/*
+ * variables.css — ブランドカラーとカスタムプロパティ
+ * カラーパレットの変更はこのファイルだけ編集してください
+ */
+
+:root {
+  /* ---- ブランドカラー ---- */
+  --g-primary:    #1A3F7A;   /* メインカラー (ネイビー) */
+  --g-primary-lt: #2563EB;   /* プライマリ薄 */
+  --g-accent:     #0EA5E9;   /* アクセント (シアン) */
+  --g-accent-lt:  #38BDF8;   /* アクセント薄 */
+
+  /* ---- 背景・テキスト ---- */
+  --g-bg:         #FFFFFF;
+  --g-bg-soft:    #F0F6FF;
+  --g-bg-mid:     #E1EEFF;
+  --g-text:       #1F2937;
+  --g-text-sub:   #6B7280;
+  --g-border:     #CBD5E1;
+
+  /* ---- セマンティックカラー ---- */
+  --g-success:    #10B981;
+  --g-warning:    #F59E0B;
+  --g-danger:     #EF4444;
+  --g-info:       #0EA5E9;
+
+  /* ---- RGB値 (Bootstrap の rgba() 計算用) ---- */
+  --g-primary-rgb:    26, 63, 122;
+  --g-primary-lt-rgb: 37, 99, 235;
+  --g-accent-rgb:     14, 165, 233;
+  --g-success-rgb:    16, 185, 129;
+  --g-warning-rgb:    245, 158, 11;
+  --g-danger-rgb:     239, 68, 68;
+
+  /* ---- スペーシング ---- */
+  --g-radius:     8px;
+  --g-radius-lg:  12px;
+  --g-shadow:     0 2px 8px rgba(26, 63, 122, .10);
+  --g-shadow-md:  0 4px 16px rgba(26, 63, 122, .14);
+
+  /* ---- フォント ---- */
+  --g-font:       "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", system-ui, sans-serif;
+  --g-font-mono:  "Cascadia Code", "Consolas", "SF Mono", monospace;
+}

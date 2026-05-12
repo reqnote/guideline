@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>開発ガイドライン</title>
+  <!-- Bootstrap 5.3 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- カスタム (読み込み順序を守ること: variables → overrides → app) -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/overrides.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<!-- =====================================================================
+     ナビゲーション (Bootstrap Navbar)
+     ===================================================================== -->
+<nav class="navbar navbar-expand-lg app-navbar sticky-top" data-bs-theme="dark">
+  <div class="container">
+    <span class="navbar-brand">開発ガイドライン</span>
+    <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navLinks" aria-controls="navLinks" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navLinks">
+      <ul class="navbar-nav gap-1 ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#design">デザイン</a></li>
+        <li class="nav-item"><a class="nav-link" href="#coding">コーディング規約</a></li>
+        <li class="nav-item"><a class="nav-link" href="#glossary">用語辞書</a></li>
+        <li class="nav-item"><a class="nav-link" href="#docs">ドキュメント規約</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tools">有用ツール</a></li>
+        <li class="nav-item"><a class="nav-link" href="#refs">その他参照</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ヒーロー -->
+<div class="page-hero">
+  <h1>開発ガイドライン</h1>
+  <p>Webシステムプロダクト開発における設計・実装・表記の統一基準</p>
+</div>
+
+<!-- =====================================================================
+     1. デザイン
+     ===================================================================== -->
+<section class="g-section" id="design">
+  <div class="container">
+    <div class="g-section-header">
+      <h2>デザイン &amp; Webコンポーネント</h2>
+      <p>本システムで使用するUIコンポーネントの一覧と使用ガイドです。Bootstrap 5 をベースに、カスタムテーマを適用しています。</p>
+    </div>
+
+    <!-- カラーパレット -->
+    <h3 class="g-h3">カラーパレット</h3>
+    <div class="color-swatches">
+      <div class="swatch"><div class="swatch-color" style="background:#1A3F7A;"></div><div class="swatch-info"><div class="swatch-name">Primary (Navy)</div><div class="swatch-hex">--g-primary / #1A3F7A</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#2563EB;"></div><div class="swatch-info"><div class="swatch-name">Primary Light</div><div class="swatch-hex">--g-primary-lt / #2563EB</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#0EA5E9;"></div><div class="swatch-info"><div class="swatch-name">Accent / Info (Cyan)</div><div class="swatch-hex">--g-accent / #0EA5E9</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#38BDF8;"></div><div class="swatch-info"><div class="swatch-name">Accent Light</div><div class="swatch-hex">--g-accent-lt / #38BDF8</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F0F6FF; border:1px solid #CBD5E1;"></div><div class="swatch-info"><div class="swatch-name">BG Soft</div><div class="swatch-hex">--g-bg-soft / #F0F6FF</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#10B981;"></div><div class="swatch-info"><div class="swatch-name">Success</div><div class="swatch-hex">--g-success / #10B981</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F59E0B;"></div><div class="swatch-info"><div class="swatch-name">Warning</div><div class="swatch-hex">--g-warning / #F59E0B</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#EF4444;"></div><div class="swatch-info"><div class="swatch-name">Danger</div><div class="swatch-hex">--g-danger / #EF4444</div></div></div>
+    </div>
+
+    <!-- タイポグラフィ -->
+    <h3 class="g-h3">タイポグラフィ</h3>
+    <div class="demo-box">
+      <div class="demo-label">見出し階層</div>
+      <div class="fs-2 fw-bolder text-primary mb-1">見出し H1 — fs-2 / fw-bolder</div>
+      <div class="fs-4 fw-bold text-primary mb-1">見出し H2 — fs-4 / fw-bold</div>
+      <div class="fs-5 fw-bold text-primary mb-1">見出し H3 — fs-5 / fw-bold</div>
+      <div class="fs-6 fw-semibold mb-2" style="color:var(--g-primary-lt);">見出し H4 — fs-6 / fw-semibold</div>
+      <p class="mb-1">本文 — 15px / line-height 1.7。Hiragino Kaku Gothic ProN → Meiryo → system-ui の順でフォントを適用。</p>
+      <p class="text-muted small mb-1">補足テキスト — small / text-muted。注釈やメタ情報に使用。</p>
+      <p class="mb-0"><code>インラインコード</code> — 等幅フォント、背景付き。</p>
+    </div>
+
+    <!-- ボタン -->
+    <h3 class="g-h3">ボタン</h3>
+    <div class="demo-box">
+      <div class="demo-label">バリアント</div>
+      <div class="d-flex flex-wrap gap-2 mb-3">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-info">Info (Accent)</button>
+        <button class="btn btn-outline-primary">Outline</button>
+        <button class="btn btn-link">Link (Ghost)</button>
+        <button class="btn btn-success">Success</button>
+        <button class="btn btn-danger">Danger</button>
+        <button class="btn btn-warning">Warning</button>
+        <button class="btn btn-secondary">Secondary</button>
+      </div>
+      <div class="demo-label">サイズ</div>
+      <div class="d-flex flex-wrap gap-2 align-items-center">
+        <button class="btn btn-primary btn-sm">Small</button>
+        <button class="btn btn-primary">Default</button>
+        <button class="btn btn-primary btn-lg">Large</button>
+      </div>
+    </div>
+    <pre><code>&lt;!-- Bootstrap ボタン使用例 --&gt;
+&lt;button class="btn btn-primary"&gt;保存&lt;/button&gt;
+&lt;button class="btn btn-outline-primary btn-sm"&gt;キャンセル&lt;/button&gt;
+&lt;a href="#" class="btn btn-info"&gt;詳細を見る&lt;/a&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;大きなCTA&lt;/button&gt;</code></pre>
+
+    <!-- バッジ -->
+    <h3 class="g-h3">バッジ</h3>
+    <div class="demo-box">
+      <div class="demo-label">ステータスバッジ (Bootstrap text-bg-*)</div>
+      <div class="d-flex flex-wrap gap-2">
+        <span class="badge text-bg-primary">Primary</span>
+        <span class="badge text-bg-info">Info</span>
+        <span class="badge text-bg-success">完了</span>
+        <span class="badge text-bg-warning">保留</span>
+        <span class="badge text-bg-danger">エラー</span>
+        <span class="badge text-bg-secondary">非公開</span>
+        <span class="badge rounded-pill text-bg-primary">Pill Primary</span>
+        <span class="badge rounded-pill text-bg-info">Pill Info</span>
+      </div>
+    </div>
+    <pre><code>&lt;span class="badge text-bg-success"&gt;完了&lt;/span&gt;
+&lt;span class="badge rounded-pill text-bg-info"&gt;Pill&lt;/span&gt;</code></pre>
+
+    <!-- アラート -->
+    <h3 class="g-h3">アラート</h3>
+    <div class="demo-box">
+      <div class="demo-label">Bootstrap Alert</div>
+      <div class="alert alert-info d-flex align-items-start gap-2" role="alert">
+        <span>ℹ️</span><span>情報アラート — ユーザーに伝えたい補足情報を表示します。</span>
+      </div>
+      <div class="alert alert-success d-flex align-items-start gap-2" role="alert">
+        <span>✅</span><span>成功アラート — 操作が正常に完了しました。</span>
+      </div>
+      <div class="alert alert-warning d-flex align-items-start gap-2" role="alert">
+        <span>⚠️</span><span>警告アラート — 確認が必要な事項があります。</span>
+      </div>
+      <div class="alert alert-danger d-flex align-items-start gap-2 mb-0" role="alert">
+        <span>🚫</span><span>エラーアラート — 処理中にエラーが発生しました。</span>
+      </div>
+    </div>
+    <pre><code>&lt;div class="alert alert-success d-flex gap-2" role="alert"&gt;
+  &lt;span&gt;✅&lt;/span&gt;
+  &lt;span&gt;保存が完了しました。&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+    <!-- フォーム -->
+    <h3 class="g-h3">フォーム</h3>
+    <div class="demo-box">
+      <div class="demo-label">Bootstrap Form</div>
+      <div style="max-width:480px;">
+        <div class="mb-3">
+          <label for="demoName" class="form-label fw-semibold">氏名<span class="text-danger ms-1">*</span></label>
+          <input type="text" class="form-control" id="demoName" placeholder="例：山田 太郎">
+          <div class="form-text">フルネームで入力してください。</div>
+        </div>
+        <div class="mb-3">
+          <label for="demoCategory" class="form-label fw-semibold">カテゴリ</label>
+          <select class="form-select" id="demoCategory">
+            <option>選択してください</option>
+            <option>バグ報告</option>
+            <option>機能要望</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="demoEmail" class="form-label fw-semibold">メールアドレス<span class="text-danger ms-1">*</span></label>
+          <input type="email" class="form-control is-invalid" id="demoEmail" value="invalid-mail">
+          <div class="invalid-feedback">有効なメールアドレスを入力してください。</div>
+        </div>
+        <div class="mb-3">
+          <label for="demoTextarea" class="form-label fw-semibold">備考</label>
+          <textarea class="form-control" id="demoTextarea" rows="3" placeholder="自由記述..."></textarea>
+        </div>
+        <div class="mb-3">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="demoCheck">
+            <label class="form-check-label" for="demoCheck">規約に同意する</label>
+          </div>
+        </div>
+        <button class="btn btn-primary">送信</button>
+        <button class="btn btn-outline-secondary ms-2">キャンセル</button>
+      </div>
+    </div>
+    <pre><code>&lt;div class="mb-3"&gt;
+  &lt;label for="name" class="form-label fw-semibold"&gt;氏名&lt;span class="text-danger ms-1"&gt;*&lt;/span&gt;&lt;/label&gt;
+  &lt;input type="text" class="form-control" id="name"&gt;
+  &lt;div class="form-text"&gt;フルネームで入力してください。&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- バリデーションエラー時 --&gt;
+&lt;input type="email" class="form-control is-invalid"&gt;
+&lt;div class="invalid-feedback"&gt;有効なメールアドレスを入力してください。&lt;/div&gt;</code></pre>
+
+    <!-- カード -->
+    <h3 class="g-h3">カード</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-3 my-1">
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-primary">機能名 A</h5>
+            <p class="card-text text-muted small">機能の概要説明テキスト。2〜3行程度の説明文が入ります。</p>
+            <span class="badge text-bg-success mt-1">有効</span>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-primary">機能名 B</h5>
+            <p class="card-text text-muted small">機能の概要説明テキスト。2〜3行程度の説明文が入ります。</p>
+            <span class="badge text-bg-warning mt-1">審査中</span>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-primary">機能名 C</h5>
+            <p class="card-text text-muted small">機能の概要説明テキスト。2〜3行程度の説明文が入ります。</p>
+            <span class="badge text-bg-secondary mt-1">未公開</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>&lt;div class="card h-100 shadow-sm"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title text-primary"&gt;タイトル&lt;/h5&gt;
+    &lt;p class="card-text text-muted small"&gt;説明&lt;/p&gt;
+    &lt;span class="badge text-bg-success"&gt;有効&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <!-- テーブル -->
+    <h3 class="g-h3">データテーブル</h3>
+    <div class="table-responsive my-2">
+      <table class="table table-hover table-bordered align-middle table-header-primary">
+        <thead>
+          <tr><th>ID</th><th>名前</th><th>ステータス</th><th>更新日</th><th>操作</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>001</td><td>山田 太郎</td><td><span class="badge text-bg-success">有効</span></td><td>2026-05-10</td><td><button class="btn btn-outline-primary btn-sm">編集</button></td></tr>
+          <tr><td>002</td><td>佐藤 花子</td><td><span class="badge text-bg-warning">保留</span></td><td>2026-05-08</td><td><button class="btn btn-outline-primary btn-sm">編集</button></td></tr>
+          <tr><td>003</td><td>鈴木 一郎</td><td><span class="badge text-bg-danger">無効</span></td><td>2026-04-30</td><td><button class="btn btn-outline-primary btn-sm">編集</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <pre><code>&lt;table class="table table-hover table-bordered table-header-primary"&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;名前&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;001&lt;/td&gt;&lt;td&gt;山田 太郎&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+    <!-- ページネーション -->
+    <h3 class="g-h3">ページネーション</h3>
+    <div class="demo-box">
+      <nav aria-label="page navigation">
+        <ul class="pagination mb-0">
+          <li class="page-item disabled"><a class="page-link" href="#">&#8592;</a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item disabled"><a class="page-link" href="#">…</a></li>
+          <li class="page-item"><a class="page-link" href="#">10</a></li>
+          <li class="page-item"><a class="page-link" href="#">&#8594;</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- ブレッドクラム -->
+    <h3 class="g-h3">ブレッドクラム</h3>
+    <div class="demo-box">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="#">ホーム</a></li>
+          <li class="breadcrumb-item"><a href="#">管理</a></li>
+          <li class="breadcrumb-item"><a href="#">ユーザー</a></li>
+          <li class="breadcrumb-item active" aria-current="page">詳細</li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- タブ -->
+    <h3 class="g-h3">タブ</h3>
+    <div class="demo-box">
+      <ul class="nav nav-tabs" id="demoTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="tab-overview" data-bs-toggle="tab" data-bs-target="#tabOverview" type="button" role="tab">概要</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-history" data-bs-toggle="tab" data-bs-target="#tabHistory" type="button" role="tab">履歴</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-settings" data-bs-toggle="tab" data-bs-target="#tabSettings" type="button" role="tab">設定</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="demoTabContent">
+        <div class="tab-pane fade show active py-3" id="tabOverview" role="tabpanel">概要タブのコンテンツがここに入ります。</div>
+        <div class="tab-pane fade py-3" id="tabHistory" role="tabpanel">履歴タブのコンテンツがここに入ります。</div>
+        <div class="tab-pane fade py-3" id="tabSettings" role="tabpanel">設定タブのコンテンツがここに入ります。</div>
+      </div>
+    </div>
+
+    <!-- モーダル -->
+    <h3 class="g-h3">モーダル</h3>
+    <div class="demo-box">
+      <!-- 静的デモ表示 -->
+      <div class="modal d-block position-static" style="background:rgba(26,63,122,.45);border-radius:12px;padding:1rem;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">削除の確認</h5>
+              <button type="button" class="btn-close"></button>
+            </div>
+            <div class="modal-body">
+              <p class="mb-0">この操作は取り消せません。本当に削除しますか？</p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-outline-secondary btn-sm">キャンセル</button>
+              <button class="btn btn-danger btn-sm">削除する</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pre><code>&lt;!-- モーダルトリガー --&gt;
+&lt;button data-bs-toggle="modal" data-bs-target="#myModal" class="btn btn-primary"&gt;
+  モーダルを開く
+&lt;/button&gt;
+
+&lt;div class="modal fade" id="myModal" tabindex="-1"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h5 class="modal-title"&gt;タイトル&lt;/h5&gt;
+        &lt;button type="button" class="btn-close" data-bs-dismiss="modal"&gt;&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;本文&lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        &lt;button class="btn btn-secondary" data-bs-dismiss="modal"&gt;閉じる&lt;/button&gt;
+        &lt;button class="btn btn-primary"&gt;保存&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <!-- トースト -->
+    <h3 class="g-h3">トースト通知</h3>
+    <div class="demo-box">
+      <div class="d-flex flex-column gap-2" style="max-width:360px;">
+        <div class="toast show align-items-center border-start border-success border-4 shadow-sm" role="alert">
+          <div class="d-flex"><div class="toast-body">✅ 保存が完了しました。</div></div>
+        </div>
+        <div class="toast show align-items-center border-start border-danger border-4 shadow-sm" role="alert">
+          <div class="d-flex"><div class="toast-body">❌ エラーが発生しました。再試行してください。</div></div>
+        </div>
+        <div class="toast show align-items-center border-start border-info border-4 shadow-sm" role="alert">
+          <div class="d-flex"><div class="toast-body">ℹ️ 新しいバージョンが利用可能です。</div></div>
+        </div>
+      </div>
+    </div>
+    <pre><code>&lt;!-- トーストコンテナ (画面右下固定) --&gt;
+&lt;div class="toast-container position-fixed bottom-0 end-0 p-3"&gt;
+  &lt;div class="toast show align-items-center border-start border-success border-4 shadow-sm" role="alert"&gt;
+    &lt;div class="d-flex"&gt;
+      &lt;div class="toast-body"&gt;✅ 保存が完了しました。&lt;/div&gt;
+      &lt;button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <!-- ステッパー (独自) -->
+    <h3 class="g-h3">ステッパー <span class="badge text-bg-secondary">カスタム</span></h3>
+    <p class="small text-muted">Bootstrap に標準コンポーネントなし。<code>app.css</code> の <code>.stepper</code> で定義。</p>
+    <div class="demo-box">
+      <div class="stepper">
+        <div class="step"><div class="step-circle done">1</div><div class="step-label">基本情報</div></div>
+        <div class="step"><div class="step-circle done">2</div><div class="step-label">詳細設定</div></div>
+        <div class="step"><div class="step-circle current">3</div><div class="step-label">確認</div></div>
+        <div class="step"><div class="step-circle todo">4</div><div class="step-label">完了</div></div>
+      </div>
+    </div>
+
+    <!-- スケルトン (独自) -->
+    <h3 class="g-h3">スケルトンローダー <span class="badge text-bg-secondary">カスタム</span></h3>
+    <p class="small text-muted">Bootstrap に標準コンポーネントなし。<code>app.css</code> の <code>.skeleton</code> で定義。</p>
+    <div class="demo-box">
+      <div class="d-flex gap-3 align-items-start">
+        <div class="skeleton skel-avatar"></div>
+        <div class="flex-grow-1">
+          <div class="skeleton skel-title"></div>
+          <div class="skeleton skel-line"></div>
+          <div class="skeleton skel-line" style="width:80%;"></div>
+          <div class="skeleton skel-line" style="width:60%;"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================================================================
+     2. コーディング規約
+     ===================================================================== -->
+<section class="g-section bg-soft" id="coding">
+  <div class="container">
+    <div class="g-section-header">
+      <h2>コーディング規約</h2>
+      <p>保守性・可読性・一貫性を保つための開発ルールです。</p>
+    </div>
+
+    <h3 class="g-h3">全般</h3>
+    <ul>
+      <li>インデントはスペース <strong>2文字</strong>（タブ禁止）</li>
+      <li>文字コードは <strong>UTF-8（BOMなし）</strong></li>
+      <li>改行コードは <strong>LF</strong>（CRLF禁止）</li>
+      <li>1行の最大文字数は <strong>120文字</strong> を目安とする</li>
+      <li>ファイル末尾に空行を1行入れる</li>
+      <li>コミットメッセージは <strong>日本語</strong> で体言止め（例：「ユーザー一覧APIを追加」）</li>
+    </ul>
+
+    <h3 class="g-h3">HTML</h3>
+    <ul>
+      <li>セマンティックタグを優先（<code>section</code>, <code>article</code>, <code>nav</code>, <code>main</code> など）</li>
+      <li>すべての画像に <code>alt</code> 属性を設定する</li>
+      <li>フォームの <code>input</code> には必ず <code>label</code> を紐付ける（<code>for</code> 属性または <code>aria-label</code>）</li>
+      <li>属性値はダブルクォートで囲む</li>
+    </ul>
+    <pre><code>&lt;!-- Good --&gt;
+&lt;section class="user-list"&gt;
+  &lt;h2&gt;ユーザー一覧&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/users/1"&gt;山田 太郎&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/section&gt;
+
+&lt;!-- Bad --&gt;
+&lt;div class='user-list'&gt;
+  &lt;div&gt;ユーザー一覧&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <h3 class="g-h3">CSS / スタイル</h3>
+    <ul>
+      <li>色・サイズはすべて <strong>CSS カスタムプロパティ</strong>（<code>variables.css</code>）で管理する</li>
+      <li>Bootstrap のユーティリティクラス（<code>d-flex</code>, <code>gap-2</code>, <code>text-muted</code> 等）を積極活用する</li>
+      <li>クラス名は <strong>ケバブケース</strong>（例：<code>card-title</code>, <code>form-group</code>）</li>
+      <li><code>!important</code> は原則禁止。Bootstrap の上書きのみ例外として許可</li>
+      <li>メディアクエリは <strong>モバイルファースト</strong>（<code>min-width</code> で記述）</li>
+    </ul>
+    <pre><code>/* Good — CSS変数使用 */
+.my-btn {
+  background: var(--g-primary);
+  border-radius: var(--g-radius);
+}
+
+/* Bad — ハードコード */
+.my-btn {
+  background: #1A3F7A !important;
+  border-radius: 8px;
+}</code></pre>
+
+    <h3 class="g-h3">JavaScript / TypeScript</h3>
+    <ul>
+      <li>変数・関数名は <strong>キャメルケース</strong>（例：<code>getUserList</code>）</li>
+      <li>定数は <strong>アッパースネークケース</strong>（例：<code>MAX_PAGE_SIZE</code>）</li>
+      <li>クラス名は <strong>パスカルケース</strong>（例：<code>UserService</code>）</li>
+      <li><code>var</code> は禁止。<code>const</code> を優先、再代入が必要な場合のみ <code>let</code> を使う</li>
+      <li>非同期処理は <strong>async/await</strong> を使用</li>
+      <li>TypeScript の型は明示的に定義する（<code>any</code> 禁止）</li>
+    </ul>
+    <pre><code>// Good
+const MAX_RETRY = 3;
+
+async function fetchUserById(userId: string): Promise&lt;User&gt; {
+  const response = await api.get(`/users/${userId}`);
+  return response.data;
+}
+
+// Bad
+var x = 3;
+function f(id: any) { ... }</code></pre>
+
+    <h3 class="g-h3">ファイル・ディレクトリ命名</h3>
+    <div class="table-responsive">
+      <table class="table table-bordered table-sm">
+        <thead class="table-light">
+          <tr><th>種別</th><th>規則</th><th>例</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>コンポーネント</td><td>パスカルケース</td><td><code>UserCard.tsx</code></td></tr>
+          <tr><td>ページ / ルート</td><td>ケバブケース</td><td><code>user-list.tsx</code></td></tr>
+          <tr><td>ユーティリティ</td><td>キャメルケース</td><td><code>formatDate.ts</code></td></tr>
+          <tr><td>定数ファイル</td><td>キャメルケース</td><td><code>apiEndpoints.ts</code></td></tr>
+          <tr><td>CSSモジュール</td><td>コンポーネントに対応</td><td><code>UserCard.module.css</code></td></tr>
+          <tr><td>ディレクトリ</td><td>ケバブケース</td><td><code>user-management/</code></td></tr>
+          <tr><td>テストファイル</td><td>対象ファイル名 + .test</td><td><code>formatDate.test.ts</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="g-h3">API 設計</h3>
+    <ul>
+      <li>REST API のパスは <strong>ケバブケース</strong>（例：<code>/api/user-profiles</code>）</li>
+      <li>リソース名は <strong>複数形</strong>（例：<code>/users</code>、<code>/orders</code>）</li>
+      <li>レスポンスは常に <code>{ data, error, meta }</code> の統一形式で返す</li>
+      <li>HTTPステータスコードを正しく使用する（<code>200</code>, <code>201</code>, <code>400</code>, <code>401</code>, <code>404</code>, <code>500</code>）</li>
+      <li>バージョン管理は URL パスに含める（例：<code>/api/v1/users</code>）</li>
+    </ul>
+
+    <h3 class="g-h3">Git ブランチ戦略</h3>
+    <div class="table-responsive">
+      <table class="table table-bordered table-sm">
+        <thead class="table-light">
+          <tr><th>ブランチ</th><th>用途</th><th>マージ先</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>main</code></td><td>本番リリース済みコード</td><td>—</td></tr>
+          <tr><td><code>develop</code></td><td>開発統合ブランチ</td><td><code>main</code></td></tr>
+          <tr><td><code>feature/xxx</code></td><td>新機能開発</td><td><code>develop</code></td></tr>
+          <tr><td><code>fix/xxx</code></td><td>バグ修正</td><td><code>develop</code></td></tr>
+          <tr><td><code>hotfix/xxx</code></td><td>本番緊急修正</td><td><code>main</code> + <code>develop</code></td></tr>
+          <tr><td><code>release/vX.Y.Z</code></td><td>リリース準備</td><td><code>main</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================================================================
+     3. 用語辞書
+     ===================================================================== -->
+<section class="g-section" id="glossary">
+  <div class="container">
+    <div class="g-section-header">
+      <h2>用語辞書</h2>
+      <p>システム内で使用する用語・略語の定義一覧です。表記揺れを防ぐために参照してください。</p>
+    </div>
+
+    <div class="mb-3" style="max-width:360px;">
+      <input type="text" class="form-control" placeholder="用語を検索..." oninput="filterGlossary(this.value)">
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered" id="glossaryTable">
+        <thead class="table-header-primary">
+          <tr><th>用語（日本語）</th><th>用語（英語 / コード名）</th><th>定義・説明</th><th>使用箇所</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ユーザー</td><td>User</td><td>本システムにアクセスする全利用者の総称</td><td>全般</td></tr>
+          <tr><td>管理者</td><td>Admin</td><td>管理機能にアクセスできる権限を持つユーザー</td><td>権限管理</td></tr>
+          <tr><td>一般ユーザー</td><td>Member</td><td>通常権限でシステムを利用するユーザー</td><td>権限管理</td></tr>
+          <tr><td>ゲスト</td><td>Guest</td><td>ログインせず閲覧のみ可能なユーザー</td><td>権限管理</td></tr>
+          <tr><td>テナント</td><td>Tenant</td><td>マルチテナント構成における契約単位の組織・企業</td><td>SaaS設計</td></tr>
+          <tr><td>ワークスペース</td><td>Workspace</td><td>テナント内の作業・操作単位となる論理空間</td><td>UI/DB</td></tr>
+          <tr><td>セッション</td><td>Session</td><td>ログインから操作終了までの一連の接続状態</td><td>認証</td></tr>
+          <tr><td>アクセストークン</td><td>Access Token</td><td>API認証に使用する短期有効の認証情報（JWT等）</td><td>API認証</td></tr>
+          <tr><td>リフレッシュトークン</td><td>Refresh Token</td><td>アクセストークン再発行に使用する長期有効の認証情報</td><td>API認証</td></tr>
+          <tr><td>ロール</td><td>Role</td><td>ユーザーに付与する権限の集合（例：admin, editor, viewer）</td><td>権限管理</td></tr>
+          <tr><td>パーミッション</td><td>Permission</td><td>特定の操作（CRUD等）を許可する最小単位の権限</td><td>権限管理</td></tr>
+          <tr><td>エンドポイント</td><td>Endpoint</td><td>APIのURL。<code>/api/v1/users</code> のような形式</td><td>API</td></tr>
+          <tr><td>ペイロード</td><td>Payload</td><td>APIリクエスト/レスポンスの本文データ部分</td><td>API</td></tr>
+          <tr><td>スキーマ</td><td>Schema</td><td>データの構造定義。DBテーブル定義またはAPIスキーマ</td><td>DB/API</td></tr>
+          <tr><td>マイグレーション</td><td>Migration</td><td>DBスキーマの変更履歴を管理・適用する仕組み</td><td>DB</td></tr>
+          <tr><td>シード</td><td>Seed</td><td>開発・テスト用に投入する初期データ</td><td>DB</td></tr>
+          <tr><td>CI/CD</td><td>CI/CD</td><td>継続的インテグレーション / 継続的デリバリーの自動化パイプライン</td><td>インフラ</td></tr>
+          <tr><td>環境変数</td><td>Environment Variable</td><td>実行環境ごとに異なる設定値を外部から注入する仕組み</td><td>全般</td></tr>
+          <tr><td>スタブ</td><td>Stub</td><td>テスト時に本物のコンポーネントを置き換える簡易実装</td><td>テスト</td></tr>
+          <tr><td>モック</td><td>Mock</td><td>テスト時に呼び出しを記録・検証できる代替オブジェクト</td><td>テスト</td></tr>
+          <tr><td>ホットフィックス</td><td>Hotfix</td><td>本番環境で発生した重大な不具合に対する緊急修正</td><td>運用</td></tr>
+          <tr><td>デプロイ</td><td>Deploy</td><td>開発したソフトウェアを実行環境へ配置・反映する作業</td><td>インフラ</td></tr>
+          <tr><td>リリース</td><td>Release</td><td>ユーザーが利用可能な状態でソフトウェアを公開すること</td><td>運用</td></tr>
+          <tr><td>バックログ</td><td>Backlog</td><td>開発予定のタスク・要件の一覧。優先順位付けして管理</td><td>プロジェクト管理</td></tr>
+          <tr><td>スプリント</td><td>Sprint</td><td>スクラム開発における一定期間の作業サイクル（通常1〜2週間）</td><td>プロジェクト管理</td></tr>
+          <tr><td>UI</td><td>UI (User Interface)</td><td>ユーザーが直接操作する画面・インターフェース</td><td>全般</td></tr>
+          <tr><td>UX</td><td>UX (User Experience)</td><td>ユーザーがシステムを通じて得る体験・操作感全般</td><td>全般</td></tr>
+          <tr><td>レスポンシブ</td><td>Responsive Design</td><td>画面サイズに応じてレイアウトが変化するデザイン手法</td><td>フロントエンド</td></tr>
+          <tr><td>ローディング</td><td>Loading / Skeleton</td><td>データ取得中に表示する待機状態のUI表現</td><td>フロントエンド</td></tr>
+          <tr><td>トースト</td><td>Toast</td><td>画面端に一時表示される操作結果の通知UI</td><td>フロントエンド</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================================================================
+     4. ドキュメント規約
+     ===================================================================== -->
+<section class="g-section bg-soft" id="docs">
+  <div class="container">
+    <div class="g-section-header">
+      <h2>ドキュメント規約</h2>
+      <p>仕様書・設計書・議事録などの作成・管理ルールです。</p>
+    </div>
+
+    <h3 class="g-h3">共通ルール</h3>
+    <ul>
+      <li>全ドキュメントはバージョン管理（Git）で管理する</li>
+      <li>ファイル形式は <strong>Markdown (.md)</strong> を基本とする</li>
+      <li>ドキュメント冒頭にヘッダー（タイトル / 作成者 / 日付 / バージョン）を記載する</li>
+      <li>更新履歴を末尾に残す</li>
+      <li>図・ダイアグラムは Mermaid 記法でテキスト化して埋め込む</li>
+    </ul>
+
+    <h3 class="g-h3">ドキュメントヘッダーテンプレート</h3>
+    <pre><code># ドキュメントタイトル
+
+| 項目       | 内容            |
+|------------|-----------------|
+| 作成者     | 山田 太郎       |
+| 作成日     | 2026-05-13      |
+| 最終更新日 | 2026-05-13      |
+| バージョン | 1.0.0           |
+| ステータス | ドラフト / 確定 |
+
+## 概要
+このドキュメントの目的と対象範囲を記述する。
+
+---</code></pre>
+
+    <h3 class="g-h3">要件定義書 — セクション構成</h3>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr><th>セクション</th><th>記載内容</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>背景・目的</td><td>なぜこの機能/システムが必要か</td></tr>
+          <tr><td>対象ユーザー</td><td>誰が使うか（ユーザーロール・ペルソナ）</td></tr>
+          <tr><td>機能要件</td><td>何ができるか（ユーザーストーリー + 受入条件）</td></tr>
+          <tr><td>非機能要件</td><td>性能・セキュリティ・可用性・保守性の基準値</td></tr>
+          <tr><td>スコープ外</td><td>明示的に対象外とする項目</td></tr>
+          <tr><td>前提条件・制約</td><td>設計・実装に影響する前提・制約事項</td></tr>
+          <tr><td>用語定義</td><td>ドキュメント内で使用する用語の定義</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="g-h3">ユーザーストーリー記法</h3>
+    <div class="card border-info mb-3">
+      <div class="card-body">
+        <p class="mb-2"><strong>形式：</strong><code>As a [ロール], I want [機能], so that [目的/価値]</code></p>
+        <hr>
+        <p class="mb-2"><strong>例：</strong><br>
+          「管理者として、ユーザー一覧をCSVでエクスポートしたい。<br>
+          なぜなら、月次レポートの作成に活用できるから。」
+        </p>
+        <hr>
+        <p class="mb-2"><strong>受入条件（Acceptance Criteria）：</strong></p>
+        <ul class="mb-0 small">
+          <li>一覧画面に「CSVエクスポート」ボタンが表示される</li>
+          <li>ボタンクリックで UTF-8 BOM 付きCSVファイルがダウンロードされる</li>
+          <li>エクスポートされるカラムは：ID / 氏名 / メール / ロール / 登録日</li>
+          <li>フィルタ適用中はフィルタ後のデータのみエクスポートされる</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="g-h3">API仕様書テンプレート</h3>
+    <pre><code>## GET /api/v1/users
+
+ユーザー一覧を取得する。
+
+### リクエスト
+
+| パラメータ | 型     | 必須 | 説明                      |
+|------------|--------|------|---------------------------|
+| page       | number | 任意 | ページ番号（デフォルト:1）|
+| limit      | number | 任意 | 取得件数（最大:100）      |
+| search     | string | 任意 | 氏名・メールで絞り込み    |
+
+### レスポンス (200 OK)
+
+```json
+{
+  "data": [
+    { "id": "u_001", "name": "山田 太郎", "email": "yamada@example.com" }
+  ],
+  "meta": { "total": 120, "page": 1, "limit": 20 },
+  "error": null
+}
+```
+
+### エラーレスポンス
+
+| コード | 説明                  |
+|--------|-----------------------|
+| 400    | リクエストパラメータ不正 |
+| 401    | 未認証                |
+| 403    | 権限不足              |</code></pre>
+
+    <h3 class="g-h3">議事録テンプレート</h3>
+    <pre><code># 議事録 — [会議名]
+
+- 日時：YYYY-MM-DD HH:mm
+- 参加者：山田 太郎、佐藤 花子（敬称略）
+- 場所 / ツール：Zoom / Google Meet
+
+## アジェンダ
+1. [議題1]
+2. [議題2]
+
+## 決定事項
+- [ ] [決定内容] — 担当：xxx / 期日：YYYY-MM-DD
+
+## 次回アクション
+| No | アクション | 担当 | 期日 |
+|----|------------|------|------|
+| 1  | xxx        | xxx  | xxx  |</code></pre>
+
+    <h3 class="g-h3">バグ報告テンプレート</h3>
+    <pre><code>## バグ概要
+[1行で問題を記述]
+
+## 環境
+- ブラウザ：Chrome 124 / Safari 17
+- OS：Windows 11 / macOS 15
+- 対象バージョン：v1.2.3
+
+## 再現手順
+1. ～ページを開く
+2. ～をクリックする
+3. ～のエラーが表示される
+
+## 期待する動作
+[正しい動作を記述]
+
+## 実際の動作
+[実際に起きていることを記述]
+
+## 優先度
+Critical / High / Medium / Low</code></pre>
+
+  </div>
+</section>
+
+<!-- =====================================================================
+     5. 有用ツール
+     ===================================================================== -->
+<section class="g-section" id="tools">
+  <div class="container">
+    <div class="g-section-header">
+      <h2>有用ツール</h2>
+      <p>開発・設計・品質管理に役立つツールの参照一覧です。</p>
+    </div>
+
+    <h3 class="g-h3">デザイン &amp; UI</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+      <div class="col"><div class="tool-card"><div class="tool-card-title">Figma</div><span class="badge text-bg-info mb-2">UI設計</span><div class="tool-card-desc">UI・ワイヤーフレームの協働設計ツール。コンポーネントライブラリの管理にも使用。</div><a href="https://figma.com" class="tool-card-link" target="_blank">figma.com ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">Slideland</div><span class="badge text-bg-info mb-2">デザイン参考</span><div class="tool-card-desc">スライドデザインギャラリー。プレゼン・資料作成の参考事例集。</div><a href="https://www.slideland.tech/" class="tool-card-link" target="_blank">slideland.tech ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">UI Design Dictionary</div><span class="badge text-bg-info mb-2">UI用語</span><div class="tool-card-desc">UIデザイン用語の定義辞典。パターン名称の統一に活用できる。</div><a href="https://ui-design-dictionary.pages.dev/" class="tool-card-link" target="_blank">ui-design-dictionary ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">Component Gallery</div><span class="badge text-bg-info mb-2">UIコンポーネント</span><div class="tool-card-desc">UIコンポーネントのデザインパターン参照集。</div><a href="https://component.gallery/components/" class="tool-card-link" target="_blank">component.gallery ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">Transitions.dev</div><span class="badge text-bg-info mb-2">アニメーション</span><div class="tool-card-desc">Webアプリ向けトランジション集。CSSアニメーションの参考に。</div><a href="https://transitions.dev/" class="tool-card-link" target="_blank">transitions.dev ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">UI Replicator</div><span class="badge text-bg-info mb-2">AI活用</span><div class="tool-card-desc">スクリーンショットからUIを再現するAIツール。</div><a href="https://huntscreens.com/ja/products/ui-replicator" class="tool-card-link" target="_blank">huntscreens.com ↗</a></div></div>
+    </div>
+
+    <h3 class="g-h3">開発・コーディング</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+      <div class="col"><div class="tool-card"><div class="tool-card-title">Regex Vis</div><span class="badge text-bg-primary mb-2">正規表現</span><div class="tool-card-desc">正規表現を視覚的に確認・デバッグできるツール。</div><a href="https://regex-vis.com/" class="tool-card-link" target="_blank">regex-vis.com ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">AWSリソース命名規則 (2024)</div><span class="badge text-bg-primary mb-2">AWS</span><div class="tool-card-desc">AWSリソースの命名規則ガイド（Classmethod社）。</div><a href="https://dev.classmethod.jp/articles/aws-resource-naming-rule-2024/" class="tool-card-link" target="_blank">classmethod.jp ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">実運用を見据えたログ設計</div><span class="badge text-bg-primary mb-2">ログ</span><div class="tool-card-desc">本番対応のログ設計の観点をまとめた記事（gihyo.jp）。</div><a href="https://gihyo.jp/article/2026/02/production-ready-logging-strategy" class="tool-card-link" target="_blank">gihyo.jp ↗</a></div></div>
+    </div>
+
+    <h3 class="g-h3">ドキュメント &amp; 設計</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+      <div class="col"><div class="tool-card"><div class="tool-card-title">デジタル庁 ダッシュボード設計ガイド</div><span class="badge text-bg-success mb-2">公式ガイド</span><div class="tool-card-desc">ダッシュボードデザインの実践ガイドブック（デジタル庁）。</div><a href="https://www.digital.go.jp/resources/dashboard-guidebook" class="tool-card-link" target="_blank">digital.go.jp ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">要件定義書テンプレート</div><span class="badge text-bg-success mb-2">テンプレート</span><div class="tool-card-desc">要件定義書の書き方とテンプレート（Qiita）。</div><a href="https://qiita.com/syantien/items/9a8a7cbaeca2be3ef0d7" class="tool-card-link" target="_blank">qiita.com ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">研修資料まとめ.md</div><span class="badge text-bg-success mb-2">学習</span><div class="tool-card-desc">エンジニア研修向けまとめ資料（GitHub Gist）。</div><a href="https://gist.github.com/gcchaan/02f4746a323acac4095c30e0783a3912" class="tool-card-link" target="_blank">GitHub Gist ↗</a></div></div>
+    </div>
+
+    <h3 class="g-h3">プロセス &amp; チーム</h3>
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+      <div class="col"><div class="tool-card"><div class="tool-card-title">エージェント向けUX設計原則</div><span class="badge text-bg-warning mb-2">AI/UX</span><div class="tool-card-desc">Microsoft によるAIエージェントのUX設計原則（Zenn）。</div><a href="https://zenn.dev/microsoft/articles/ux-design-for-agents-by-microsoft" class="tool-card-link" target="_blank">zenn.dev ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">リファクタリング時間確保の技術</div><span class="badge text-bg-warning mb-2">開発プロセス</span><div class="tool-card-desc">リファクタリング時間を組織的に確保する方法（Zenn）。</div><a href="https://zenn.dev/loglass/articles/961e283e6fbe71" class="tool-card-link" target="_blank">zenn.dev ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">バグ密度に依存しない品質保証</div><span class="badge text-bg-warning mb-2">品質</span><div class="tool-card-desc">バグ密度・テスト密度に依存しない品質保証の挑戦（NTTデータ）。</div><a href="https://www.nttdata.com/jp/ja/trends/data-insight/2021/0204/" class="tool-card-link" target="_blank">nttdata.com ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">"提案"のレベルを上げる</div><span class="badge text-bg-warning mb-2">ソフトスキル</span><div class="tool-card-desc">提案の質を上げるための考え方（Konifar's ZATSU）。</div><a href="https://konifar-zatsu.hatenadiary.jp/entry/2023/11/01/193210" class="tool-card-link" target="_blank">hatenadiary.jp ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">進捗報告のやり方</div><span class="badge text-bg-warning mb-2">コミュニケーション</span><div class="tool-card-desc">エンジニアの進捗報告を改善するための具体的な方法（Zenn）。</div><a href="https://zenn.dev/contradiction29/articles/f482262d1ab3c0" class="tool-card-link" target="_blank">zenn.dev ↗</a></div></div>
+      <div class="col"><div class="tool-card"><div class="tool-card-title">How to Kill the Code Review</div><span class="badge text-bg-warning mb-2">コードレビュー</span><div class="tool-card-desc">コードレビューの課題と改善アプローチについての記事（Latent Space）。</div><a href="https://www.latent.space/p/reviews-dead" class="tool-card-link" target="_blank">latent.space ↗</a></div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =====================================================================
+     6. その他参照
+     ===================================================================== -->
+<section class="g-section bg-soft" id="refs">
+  <div class="container">
+    <div class="g-section-header">
+      <h2>その他参照</h2>
+      <p>有益な外部リンクの一覧です。</p>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead class="table-header-primary">
+          <tr><th>#</th><th>タイトル</th><th>URL</th><th>カテゴリ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>MAGICRAVEN モバイルモニター 15.6インチ 1080P</td><td><a href="https://www.amazon.co.jp/dp/B0CHM8JLMH" target="_blank">amazon.co.jp ↗</a></td><td><span class="badge text-bg-secondary">ハードウェア</span></td></tr>
+          <tr><td>2</td><td>スライドデザインギャラリー | Slideland</td><td><a href="https://www.slideland.tech/" target="_blank">slideland.tech ↗</a></td><td><span class="badge text-bg-info">デザイン</span></td></tr>
+          <tr><td>3</td><td>Transitions.dev — Essential transitions for web apps</td><td><a href="https://transitions.dev/" target="_blank">transitions.dev ↗</a></td><td><span class="badge text-bg-info">フロントエンド</span></td></tr>
+          <tr><td>4</td><td>ダッシュボードデザインの実践ガイドブック | デジタル庁</td><td><a href="https://www.digital.go.jp/resources/dashboard-guidebook" target="_blank">digital.go.jp ↗</a></td><td><span class="badge text-bg-success">公式ガイド</span></td></tr>
+          <tr><td>5</td><td>UI Design Dictionary</td><td><a href="https://ui-design-dictionary.pages.dev/" target="_blank">ui-design-dictionary ↗</a></td><td><span class="badge text-bg-info">デザイン</span></td></tr>
+          <tr><td>6</td><td>Components — component.gallery</td><td><a href="https://component.gallery/components/" target="_blank">component.gallery ↗</a></td><td><span class="badge text-bg-info">デザイン</span></td></tr>
+          <tr><td>7</td><td>width:100%の代わりにwidth:stretchを使う</td><td><a href="https://bcrikko.github.io/til/posts/2025-06-25/width-stretch/" target="_blank">bcrikko.github.io ↗</a></td><td><span class="badge text-bg-primary">CSS</span></td></tr>
+          <tr><td>8</td><td>エージェントのためのUX設計原則 by Microsoft</td><td><a href="https://zenn.dev/microsoft/articles/ux-design-for-agents-by-microsoft" target="_blank">zenn.dev ↗</a></td><td><span class="badge text-bg-warning">AI/UX</span></td></tr>
+          <tr><td>9</td><td>UI Replicator</td><td><a href="https://huntscreens.com/ja/products/ui-replicator" target="_blank">huntscreens.com ↗</a></td><td><span class="badge text-bg-info">AI/デザイン</span></td></tr>
+          <tr><td>10</td><td>"提案"のレベルを上げる — Konifar's ZATSU</td><td><a href="https://konifar-zatsu.hatenadiary.jp/entry/2023/11/01/193210" target="_blank">hatenadiary.jp ↗</a></td><td><span class="badge text-bg-warning">ソフトスキル</span></td></tr>
+          <tr><td>11</td><td>研修資料まとめ.md (GitHub Gist)</td><td><a href="https://gist.github.com/gcchaan/02f4746a323acac4095c30e0783a3912" target="_blank">gist.github.com ↗</a></td><td><span class="badge text-bg-success">学習</span></td></tr>
+          <tr><td>12</td><td>バグ密度・テスト密度に依存しない品質保証への挑戦 | NTTデータ</td><td><a href="https://www.nttdata.com/jp/ja/trends/data-insight/2021/0204/" target="_blank">nttdata.com ↗</a></td><td><span class="badge text-bg-warning">品質</span></td></tr>
+          <tr><td>13</td><td>実運用を見据えたログ設計の観点 | gihyo.jp</td><td><a href="https://gihyo.jp/article/2026/02/production-ready-logging-strategy" target="_blank">gihyo.jp ↗</a></td><td><span class="badge text-bg-primary">バックエンド</span></td></tr>
+          <tr><td>14</td><td>How to Kill the Code Review</td><td><a href="https://www.latent.space/p/reviews-dead" target="_blank">latent.space ↗</a></td><td><span class="badge text-bg-warning">開発プロセス</span></td></tr>
+          <tr><td>15</td><td>Regex Vis</td><td><a href="https://regex-vis.com/" target="_blank">regex-vis.com ↗</a></td><td><span class="badge text-bg-primary">開発ツール</span></td></tr>
+          <tr><td>16</td><td>AWSリソースの命名規則を考えてみた (2024年版)</td><td><a href="https://dev.classmethod.jp/articles/aws-resource-naming-rule-2024/" target="_blank">classmethod.jp ↗</a></td><td><span class="badge text-bg-primary">インフラ</span></td></tr>
+          <tr><td>17</td><td>要件定義書テンプレート・書き方 | Qiita</td><td><a href="https://qiita.com/syantien/items/9a8a7cbaeca2be3ef0d7" target="_blank">qiita.com ↗</a></td><td><span class="badge text-bg-success">ドキュメント</span></td></tr>
+          <tr><td>18</td><td>「リファクタリングの時間」を確保する技術</td><td><a href="https://zenn.dev/loglass/articles/961e283e6fbe71" target="_blank">zenn.dev ↗</a></td><td><span class="badge text-bg-warning">開発プロセス</span></td></tr>
+          <tr><td>19</td><td>進捗報告のやり方</td><td><a href="https://zenn.dev/contradiction29/articles/f482262d1ab3c0" target="_blank">zenn.dev ↗</a></td><td><span class="badge text-bg-warning">コミュニケーション</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="app-footer">
+  <strong>開発ガイドライン</strong> &mdash; Bootstrap 5.3 + カスタムテーマ &mdash; 最終更新：2026-05-13
+</footer>
+
+<!-- Bootstrap Bundle (Popper.js 含む) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- カスタムスクリプト -->
+<script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+/*
+ * overrides.css — Bootstrap CSS変数の上書き
+ *
+ * 色の値は直接書かず、すべて variables.css の --g-* 変数を参照します。
+ * カラーパレットの変更は variables.css だけを編集してください。
+ *
+ * [競合解決]
+ *   --bs-primary : Bootstrap デフォルト #0d6efd → --g-primary (ネイビー) に変更
+ *   --bs-info    : Bootstrap デフォルト #0dcaf0 → --g-accent (シアン) に変更
+ *   btn-accent (独自) → Bootstrap の btn-info で代替
+ */
+
+:root {
+  /* ---- Primary → ネイビー ---- */
+  --bs-primary:               var(--g-primary);
+  --bs-primary-rgb:           var(--g-primary-rgb);
+  --bs-primary-text-emphasis: var(--g-primary);
+  --bs-primary-bg-subtle:     var(--g-bg-mid);
+  --bs-primary-border-subtle: #B8D4FF;
+
+  /* ---- Info → シアン (アクセント代替) ---- */
+  --bs-info:                  var(--g-accent);
+  --bs-info-rgb:              var(--g-accent-rgb);
+  --bs-info-text-emphasis:    #0369A1;
+  --bs-info-bg-subtle:        #E0F2FE;
+  --bs-info-border-subtle:    #BAE6FD;
+
+  /* ---- Success ---- */
+  --bs-success:               var(--g-success);
+  --bs-success-rgb:           var(--g-success-rgb);
+  --bs-success-text-emphasis: #065F46;
+  --bs-success-bg-subtle:     #D1FAE5;
+  --bs-success-border-subtle: #A7F3D0;
+
+  /* ---- Warning ---- */
+  --bs-warning:               var(--g-warning);
+  --bs-warning-rgb:           var(--g-warning-rgb);
+  --bs-warning-text-emphasis: #78350F;
+  --bs-warning-bg-subtle:     #FEF3C7;
+  --bs-warning-border-subtle: #FDE68A;
+
+  /* ---- Danger ---- */
+  --bs-danger:                var(--g-danger);
+  --bs-danger-rgb:            var(--g-danger-rgb);
+  --bs-danger-text-emphasis:  #7F1D1D;
+  --bs-danger-bg-subtle:      #FEE2E2;
+  --bs-danger-border-subtle:  #FECACA;
+
+  /* ---- Link ---- */
+  --bs-link-color:            var(--g-primary-lt);
+  --bs-link-hover-color:      var(--g-primary);
+  --bs-link-color-rgb:        var(--g-primary-lt-rgb);
+
+  /* ---- フォーカスリング → シアン ---- */
+  --bs-focus-ring-color:      rgba(var(--g-accent-rgb), 0.25);
+
+  /* ---- Border radius ---- */
+  --bs-border-radius:         var(--g-radius);
+  --bs-border-radius-sm:      6px;
+  --bs-border-radius-lg:      var(--g-radius-lg);
+  --bs-border-radius-xl:      16px;
+
+  /* ---- フォント (日本語対応) ---- */
+  --bs-font-sans-serif:       var(--g-font);
+  --bs-font-monospace:        var(--g-font-mono);
+
+  /* ---- ボディ ---- */
+  --bs-body-color:            var(--g-text);
+  --bs-body-bg:               var(--g-bg);
+  --bs-border-color:          var(--g-border);
+}
+
+/* ---- ボタン: Primary ---- */
+.btn-primary {
+  --bs-btn-bg:               var(--g-primary);
+  --bs-btn-border-color:     var(--g-primary);
+  --bs-btn-color:            #fff;
+  --bs-btn-hover-bg:         #163264;
+  --bs-btn-hover-border-color: #163264;
+  --bs-btn-hover-color:      #fff;
+  --bs-btn-active-bg:        #122956;
+  --bs-btn-focus-shadow-rgb: var(--g-primary-rgb);
+}
+
+/* ---- ボタン: Info (シアン / アクセント代替) ---- */
+.btn-info {
+  --bs-btn-bg:              var(--g-accent);
+  --bs-btn-border-color:    var(--g-accent);
+  --bs-btn-color:           #fff;
+  --bs-btn-hover-bg:        #0284c7;
+  --bs-btn-hover-border-color: #0284c7;
+  --bs-btn-hover-color:     #fff;
+  --bs-btn-active-color:    #fff;
+  --bs-btn-focus-shadow-rgb: var(--g-accent-rgb);
+}
+
+/* ---- ボタン: Success / Danger / Warning ---- */
+.btn-success {
+  --bs-btn-bg:           var(--g-success);
+  --bs-btn-border-color: var(--g-success);
+  --bs-btn-color:        #fff;
+  --bs-btn-hover-bg:     #059669;
+  --bs-btn-hover-color:  #fff;
+  --bs-btn-focus-shadow-rgb: var(--g-success-rgb);
+}
+.btn-danger {
+  --bs-btn-bg:           var(--g-danger);
+  --bs-btn-border-color: var(--g-danger);
+  --bs-btn-color:        #fff;
+  --bs-btn-hover-bg:     #dc2626;
+  --bs-btn-hover-color:  #fff;
+  --bs-btn-focus-shadow-rgb: var(--g-danger-rgb);
+}
+.btn-warning {
+  --bs-btn-color:       #fff;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-focus-shadow-rgb: var(--g-warning-rgb);
+}
+
+/* ---- ボタン: アウトライン ---- */
+.btn-outline-primary {
+  --bs-btn-color:              var(--g-primary);
+  --bs-btn-border-color:       var(--g-primary);
+  --bs-btn-hover-bg:           var(--g-primary);
+  --bs-btn-hover-border-color: var(--g-primary);
+  --bs-btn-focus-shadow-rgb:   var(--g-primary-rgb);
+}
+.btn-outline-info {
+  --bs-btn-color:        var(--g-accent);
+  --bs-btn-border-color: var(--g-accent);
+  --bs-btn-hover-bg:     var(--g-accent);
+  --bs-btn-hover-color:  #fff;
+  --bs-btn-focus-shadow-rgb: var(--g-accent-rgb);
+}
+
+/* ---- フォームコントロール ---- */
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  border-color: var(--g-accent);
+  box-shadow:   0 0 0 0.25rem rgba(var(--g-accent-rgb), 0.25);
+}
+.form-label { color: var(--g-primary); }
+
+/* ---- ページネーション ---- */
+.pagination {
+  --bs-pagination-active-bg:           var(--g-primary);
+  --bs-pagination-active-border-color: var(--g-primary);
+  --bs-pagination-hover-color:         var(--g-primary);
+  --bs-pagination-focus-color:         var(--g-primary);
+  --bs-pagination-focus-box-shadow:    0 0 0 0.25rem rgba(var(--g-accent-rgb), 0.25);
+}
+
+/* ---- タブ ---- */
+.nav-tabs {
+  --bs-nav-tabs-border-color:             var(--g-border);
+  --bs-nav-tabs-link-hover-border-color:  var(--g-border) var(--g-border) transparent;
+  --bs-nav-tabs-link-active-color:        var(--g-primary);
+  --bs-nav-tabs-link-active-bg:           var(--g-bg);
+  --bs-nav-tabs-link-active-border-color: var(--g-border) var(--g-border) var(--g-bg);
+}
+.nav-tabs .nav-link       { color: var(--g-text-sub); }
+.nav-tabs .nav-link:hover { color: var(--g-primary); }
+
+/* ---- ブレッドクラム ---- */
+.breadcrumb-item + .breadcrumb-item::before { color: var(--g-text-sub); }
+.breadcrumb-item.active                     { color: var(--g-text-sub); }
+
+/* ---- モーダル ---- */
+.modal-title { color: var(--g-primary); font-weight: 700; }
